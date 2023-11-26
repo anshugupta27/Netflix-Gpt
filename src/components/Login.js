@@ -6,16 +6,15 @@ import {
 import Header from "./Header";
 import checkValidData from "../utils/validate";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BACKGROUND_IMAGE, PROFILE_IMAGE } from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
 
   const email = useRef(null);
   const password = useRef(null);
@@ -27,7 +26,6 @@ const Login = () => {
 
   const handleButtonClick = () => {
     const message = checkValidData(email.current.value, password.current.value);
-    console.log(message);
     setErrorMessage(message);
     if (message) return;
     if (!isSignInForm) {
@@ -43,7 +41,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: displayName.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/57598091?v=4",
+            photoURL: PROFILE_IMAGE,
           })
             .then(() => {
               // Profile updated!
@@ -56,8 +54,6 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-
-              navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -67,7 +63,6 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorMessage);
           setErrorMessage(errorCode + " " + errorMessage);
         });
     } else {
@@ -80,7 +75,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -95,7 +89,7 @@ const Login = () => {
       <Header />
       <div className="absolute top-0">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/a09bb938-2d90-42ae-986e-5a3e4abf9e77/8eb1e781-3494-4aa4-9405-268ca6473e4c/IN-en-20231113-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          src={BACKGROUND_IMAGE}
           alt="background"
         />
       </div>
