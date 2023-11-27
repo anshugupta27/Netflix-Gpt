@@ -37,6 +37,12 @@ ie. if the user is not logged in Redirect /browse to Login Page and vice-versa
 - Update Store with Trailer Video Data
 - Embedded te Youtube video and make it autoplay and mute
 - Tailwind classes to make Main Container look awesome
+- Build Secondary Component
+    - MovieList - Popular
+        - MovieCard * n
+    - MovieList - NowPlaying
+    - MovieList - Trending
+    - MovieList - Horror
 
 
 # Features
