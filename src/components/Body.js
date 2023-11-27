@@ -6,7 +6,6 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 
-
 const Body = () => {
   const appRouter = createBrowserRouter([
     {

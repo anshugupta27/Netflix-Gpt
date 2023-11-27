@@ -7,9 +7,15 @@ import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { onAuthStateChanged } from "firebase/auth";
 import { NETFLIX_LOGO } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { SUPPORTED_LANGUAGES } from "../utils/constants";
+import {changesLanguage} from '../utils/configSlice';
+import lang from "../utils/languageConstants";
 
 const Header = () => {
   const navigate = useNavigate();
+  const langKey = useSelector((store)=>store.config.lang);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch)
   const userDetails = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
@@ -45,22 +51,39 @@ const Header = () => {
       });
   };
 
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView());
+  };
+const handleLanguageChange = (e) => {
+  dispatch(changesLanguage(e.target.value))
+}
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 top-0 flex justify-between">
-      <img
-        className="w-44"
-        src={NETFLIX_LOGO}
-        alt="Netflix logo"
-      />
+      <img className="w-44" src={NETFLIX_LOGO} alt="Netflix logo" />
       {userDetails && (
         <div className="flex p-2">
+          <select className="p-2 bg-gray-900 text-white m-2" onChange={handleLanguageChange}>
+            {SUPPORTED_LANGUAGES.map((lang) => {
+              return (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              );
+            })}
+          </select>
+          <button
+            onClick={handleGptSearchClick}
+            className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg"
+          >
+           {showGptSearch ? lang[langKey].homePage : lang[langKey].GptSearchButton}
+          </button>
           <img
             className="w-12 h-12"
             src={userDetails?.photoURL}
             alt="usericon"
           />
           <button onClick={handleSignOut} className="font-bold text-white">
-            (Sign out)
+            ({lang[langKey].signOut})
           </button>
         </div>
       )}

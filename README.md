@@ -48,7 +48,10 @@ ie. if the user is not logged in Redirect /browse to Login Page and vice-versa
 - TMDB Image CDN URL
 - Made the browser page amazing with Tailwind css
 - usePopularMovies, useTopRatedMovies, useUpcomingMovies custom hook
-
+- GPT Search Page
+- GPT Search bar
+- (BONUS) Multi-language feature in out App
+- Integrate GPT API
 
 # Features
 - Login/Sign Up
