@@ -43,6 +43,11 @@ ie. if the user is not logged in Redirect /browse to Login Page and vice-versa
     - MovieList - NowPlaying
     - MovieList - Trending
     - MovieList - Horror
+- Build Movie List
+- Build Movie Card
+- TMDB Image CDN URL
+- Made the browser page amazing with Tailwind css
+- usePopularMovies, useTopRatedMovies, useUpcomingMovies custom hook
 
 
 # Features
