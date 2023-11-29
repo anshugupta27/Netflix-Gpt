@@ -52,6 +52,7 @@ ie. if the user is not logged in Redirect /browse to Login Page and vice-versa
 - GPT Search bar
 - (BONUS) Multi-language feature in out App
 - Integrate GPT API
+- Added .env file to store the credentials and have to store .env on server
 
 # Features
 - Login/Sign Up

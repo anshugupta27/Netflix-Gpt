@@ -57,11 +57,12 @@ const Header = () => {
 const handleLanguageChange = (e) => {
   dispatch(changesLanguage(e.target.value))
 }
+
   return (
-    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 top-0 flex justify-between">
-      <img className="w-44" src={NETFLIX_LOGO} alt="Netflix logo" />
+    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 top-0 flex justify-between flex flex-col md:flex-row">
+      <img className="w-44 mx-auto md:mx-0" src={NETFLIX_LOGO} alt="Netflix logo" />
       {userDetails && (
-        <div className="flex p-2">
+        <div className="flex p-2 justify-between">
           <select className="p-2 bg-gray-900 text-white m-2" onChange={handleLanguageChange}>
             {SUPPORTED_LANGUAGES.map((lang) => {
               return (
@@ -78,7 +79,7 @@ const handleLanguageChange = (e) => {
            {showGptSearch ? lang[langKey].homePage : lang[langKey].GptSearchButton}
           </button>
           <img
-            className="w-12 h-12"
+            className="hidden md:block w-12 h-12"
             src={userDetails?.photoURL}
             alt="usericon"
           />
